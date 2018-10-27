@@ -27,27 +27,24 @@ function setDevice() {
 
 async function run() {
 
-    const browser = await puppeteer.launch({
-        headless: false,  //是否需关闭浏览器显示,
-        args: [
-            '--proxy-server=183.129.244.17:17452'
-        ]
-    });
-    const page = await browser.newPage();
-    await page.emulate(devices['iPhone 6']);
+        const browser = await puppeteer.launch({
+            headless: false,  //是否需关闭浏览器显示,
+        });
+        const page = await browser.newPage();
+        await page.emulate(setDevice());
 
 
-
-    try{
-        await page.goto('http://ip.cn',pageGotoOption);
-        let container = '#container';
-        await page.waitForSelector(container);
-        console.log('加载成功')
-    }catch(e){//没有网络
-        console.log(e)
-        console.log(' ')
-    }
-
+        try{
+            await page.goto('http://www.baidu.com',pageGotoOption);
+            await page.waitFor(3000)
+            console.log('加载成功')
+        }catch(e){//没有网络
+            console.log(e)
+            console.log(' ')
+        }
+        browser.close();
+        await page.waitFor(1000)
+        run();
 }
 
 run();

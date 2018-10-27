@@ -19,25 +19,27 @@ const axios = require('axios');
 250-10
 300-12
 350-14
-400-16*/
+400-16
+500-20
+*/
 
 let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
     //id、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
-    {id:0,  alive:true,  viewRate:100, clickRate:12, viewMax:1500, clickMax:3, viewed:0, clicked:0},   //17
-    {id:1,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},   //138
-    {id:2,  alive:true,  viewRate:100, clickRate:12, viewMax:1500, clickMax:3, viewed:0, clicked:0},  //B1
-    {id:3,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},   //B2
-    {id:4,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //黑
-    {id:5,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //团
-    {id:6,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //1_642
-    {id:7,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //2_648
-    {id:8,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //3_674
-    {id:9,  alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //4_654
-    {id:10, alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //5_664
-    {id:11, alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //6_643
-    {id:12, alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //7_647
-    {id:13, alive:true,  viewRate:100, clickRate:0, viewMax:1500, clickMax:0, viewed:0, clicked:0},  //8_644
-    {id:14, alive:true,  viewRate:100, clickRate:0, viewMax:400, clickMax:0, viewed:0, clicked:0},  //9_644
+    {id:0,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},   //17 7
+    {id:1,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},   //138 7
+    {id:2,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //B1 0
+    {id:3,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},   //B2 11
+    {id:4,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //黑 0
+    {id:5,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //团 0
+    {id:6,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //1_642 6
+    {id:7,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},  //2_648 11
+    {id:8,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //3_674 1
+    {id:9,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //4_654 1
+    {id:10, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},  //5_664 10
+    {id:11, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //6_643 6
+    {id:12, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},  //7_647 4
+    {id:13, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},  //8_644 3
+    {id:14, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //9_644 413  1
 ]
 
 let aliveConfigObj = configObj.filter(item =>item.alive === true)
@@ -54,83 +56,45 @@ let pageGotoOption = {
     waitUntil:'networkidle0'
 }
 
-
 //生成随机数函数
 function randomNum(min, max){
     return Math.floor(Math.random() * (max - min) + min);
 }
-//获取代理列表
-function getProxyList() {
-    const NewProxy = {
-        index:0,
-        list:[]
-    }
-    return new Promise((resolve, reject)=>{
-        return axios.get('http://tpv.daxiangdaili.com/ip/?tid=556024889005251&num=100&filter=on')
-            .then(res=>{
-                NewProxy.list = res.data.replace(/\r\n/g,'-').split('-');
-                if(NewProxy.list.length > 3){//获取到ip大于4个时
-                    console.log('++++获取IP成功++++')
-                    resolve(NewProxy)
-                }else {//获取不到ip
-                    setTimeout(()=>{
-                        console.log('重新获取IP')
-                        resolve(getProxyList())
-                    },200*1000)
-
-                }
-            })
-            .catch(error=> {
-                console.log(error);
-            });
-
-    })
-}
-
 function setDevice() {
     let randomIndex = Math.floor(Math.random()*devices.length)
     return devices[randomIndex]
 }
 
-
-async function run(index, config, flag, links, proxy) {
+async function run(index, config, flag, links) {
 
     let opendLink = randomNum(1,100);
     let opendAd = randomNum(1,100);
     let viewtime = randomNum(10*1000,14*1000);//页面停留时间
 
     console.log('randomNum: ',opendLink,opendAd)
-
     let currentConfig = config.find(item =>item.id===index.target);
 
     if (opendLink < currentConfig.viewRate){
 
-        if (proxy.index === proxy.list.length || proxy.list[proxy.index] === undefined){
-            await getProxyList().then(res=>{
-                proxy = res;
-                console.log('++++新获取proxy',proxy,'++++')
-            });
-        }
-
         const browser = await puppeteer.launch({
             headless: true,  //是否需关闭浏览器显示,
-            args: [
-                '--proxy-server='+ proxy.list[proxy.index]
-            ]
         });
-        console.log('当前使用代理',proxy.list[proxy.index])
-        proxy.index++;
 
         const page = await browser.newPage();
         await page.emulate(setDevice());
-        await page.waitFor(randomNum(10,20));//使打开link时间间隔随机
+
+        if (!flag){
+            flag = 1;
+            await page.waitFor(randomNum(3*1000,6*1000));
+        }else{
+            await page.waitFor(randomNum(10,20));//使打开link时间间隔随机
+        }
 
         if ( currentConfig.viewed < currentConfig.viewMax) {
             try{
                 //打开页面
                 let linkIndex = randomNum(0,links[index.target].length); //随机链接下标
                 await page.goto(links[index.target][linkIndex],pageGotoOption);
-
                 let container = '#container';
                 await page.waitForSelector(container);
                 if (container&&flag){ //有网络，加载页面成功
@@ -173,7 +137,7 @@ async function run(index, config, flag, links, proxy) {
 
 
                     let clickFalg = 0;
-                    let openLinks = index.arr.length < 4 ? index.arr.length : 4
+                    let openLinks = index.arr.length < 6 ? index.arr.length : 6
                     while (clickFalg < openLinks){ //同时打开的链接数
                         let clickRandom = randomNum(0,index.arr.length);
                         let currentConfigNew = config.find(item =>item.id===clickRandom);
@@ -183,8 +147,12 @@ async function run(index, config, flag, links, proxy) {
 
                             let linkIndexNew = randomNum(0,links[clickRandom].length);
                             await pageNew.goto(links[clickRandom][linkIndexNew],pageGotoOption); //前面加await为同步执行
-                            currentConfigNew.viewed++;
-                            console.log('****** 同时点击 ID_'+ currentConfigNew.id + ': ' + currentConfigNew.viewed + ' ******');
+                            let containerNew = '#container';
+                            await pageNew.waitForSelector(containerNew);
+                            if (containerNew){
+                                currentConfigNew.viewed++;
+                                console.log('****** 同时点击 ID_'+ currentConfigNew.id + ': ' + currentConfigNew.viewed + ' ******');
+                            }
                         }
 
                         clickFalg++;
@@ -225,15 +193,10 @@ async function run(index, config, flag, links, proxy) {
 
     index.target = index.target === index.arr[index.arr.length - 1] ? index.arr[0] : index.arr[index.arr.indexOf(index.target) + 1];
 
-    run(index, config, flag, linkArr, proxy);
+    run(index, config, flag, linkArr);
 }
 
-getProxyList()
-.then(resProxy=>{
-    console.log(resProxy)
-    run(indexObj, configObj, netFlag, linkArr, resProxy)
-})
-
+run(indexObj, configObj, netFlag, linkArr);
 
 
 

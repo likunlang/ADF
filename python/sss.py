@@ -6,6 +6,7 @@ import random
 import win32api,win32con
 sys.setrecursionlimit(100000)
 
+
 def click(x,y):
     win32api.SetCursorPos((x,y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)
@@ -25,13 +26,13 @@ def getlines():
 		for i in range(0,randline):
 			#print(lines[random.randint(0,len(lines)-1)])
 			# newf.write(lines[random.randint(0,len(lines))]) # 写入新文件随机行
-			
+			deviceArr=['Galaxy S5','iPhone 5','iPhone 6','iPhone 6 Plus','iPhone 7','iPhone 7 Plus','iPhone 8','iPhone 8 Plus','iPhone X','iPhone SE','Nexus 4','Nexus 5','Nexus 6','Nexus 7']
 			chromeOptions = webdriver.ChromeOptions()
-			mobileEmulation = {'deviceName': 'iPhone X'}
+			mobileEmulation = {'deviceName': deviceArr[random.randint(0,len(deviceArr)-1)]}
 			chromeOptions.add_experimental_option('mobileEmulation', mobileEmulation)
-			chromeOptions.set_headless()#设置成无浏览器界面
+			# chromeOptions.set_headless()#设置成无浏览器界面
 			#line =  getip()
-			chromeOptions.add_argument("--proxy-server=http://"+line)
+			# chromeOptions.add_argument("--proxy-server=http://"+line)
 			browser = webdriver.Chrome(chrome_options = chromeOptions)
 			browser.set_page_load_timeout(45)
 			global ii
@@ -44,17 +45,17 @@ def getlines():
 			else:								
 				for i in range(1, 2):
 					browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
-					time.sleep(3)
-					#click(392,349)
-					#click(305,610)
-					#click(385,690)
+					time.sleep(random.randint(2,4))
+					click(392,349)
+					click(305,610)
+					click(385,690)
 					time.sleep(1)	
 				for i in range(1, 2):
 					browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
-					time.sleep(3)
-					#click(322,389)
-					#click(335,510)
-					#click(385,590)
+					time.sleep(random.randint(2,3))
+					click(322,389)
+					click(335,510)
+					click(385,590)
 					time.sleep(1)
 					ii  = ii+1
 					print(ii)

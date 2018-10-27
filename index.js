@@ -25,21 +25,21 @@ const axios = require('axios');
 
 let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
     //id、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
-    {id:0,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},   //17 7
-    {id:1,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},   //138 7
-    {id:2,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //B1 0
-    {id:3,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},   //B2 11
-    {id:4,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //黑 0
-    {id:5,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //团 0
-    {id:6,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //1_642 6
-    {id:7,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},  //2_648 11
-    {id:8,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //3_674 1
-    {id:9,  alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //4_654 1
-    {id:10, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:5, viewed:0, clicked:0},  //5_664 10
-    {id:11, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //6_643 6
-    {id:12, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},  //7_647 4
-    {id:13, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:6, viewed:0, clicked:0},  //8_644 3
-    {id:14, alive:true,  viewRate:100, clickRate:36, viewMax:1500, clickMax:8, viewed:0, clicked:0},  //9_644 413  1
+    {id:0, alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //7_647 4
+    {id:1, alive:true,  viewRate:92, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //8_644 650 3
+    {id:2, alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //9_644 529 2
+    {id:3,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},   //17 717 14
+    {id:4,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},   //138 682 13
+    {id:5,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //B1 823 4
+    {id:6,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},   //B2 592 19
+    {id:7,  alive:true,  viewRate:94, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //黑 628 3
+    {id:8,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //团 599 8
+    {id:9,  alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //1_642 594 11
+    {id:10, alive:true,  viewRate:86, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //2_648 668 16
+    {id:11, alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //3_674 592 6
+    {id:12, alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //4_654 607 3
+    {id:13, alive:true,  viewRate:83, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //5_664 610 14
+    {id:14, alive:true,  viewRate:100, clickRate:18, viewMax:1500, clickMax:10, viewed:0, clicked:0},  //6_643 602 8
 ]
 
 let aliveConfigObj = configObj.filter(item =>item.alive === true)
@@ -128,10 +128,10 @@ async function run(index, config, flag, links) {
                             })
                             console.log(' ');
 
-                            await page.waitFor(randomNum(100,600));
+                            await page.waitFor(randomNum(100,300));
                         }
                     }else if (currentConfig.clicked >= currentConfig.clickMax){
-                        await page.waitFor(randomNum(100,300));
+                        await page.waitFor(randomNum(50,160));
                         console.log('---- ID_ '+currentConfig.id+'已完成点击：'+currentConfig.clicked+' ----')
                     }
 
@@ -184,7 +184,7 @@ async function run(index, config, flag, links) {
         }
 
         //关闭浏览器
-        await page.waitFor(randomNum(200,800));
+        await page.waitFor(randomNum(100,300));
         browser.close();
 
     }else{

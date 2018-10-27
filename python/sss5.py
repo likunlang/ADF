@@ -30,7 +30,7 @@ def getlines():
 			chromeOptions = webdriver.ChromeOptions()
 			mobileEmulation = {'deviceName': deviceArr[random.randint(0,len(deviceArr)-1)]}
 			chromeOptions.add_experimental_option('mobileEmulation', mobileEmulation)
-			# chromeOptions.set_headless()#设置成无浏览器界面
+			chromeOptions.set_headless()#设置成无浏览器界面
 			#line =  getip()
 			# chromeOptions.add_argument("--proxy-server=http://"+line)
 			browser = webdriver.Chrome(chrome_options = chromeOptions)

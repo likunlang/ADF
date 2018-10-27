@@ -1,0 +1,13 @@
+{
+    "name": "ADF",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "axios": "^0.18.0",
+        "global-tunnel-ng": "^2.6.0",
+        "http": "0.0.0",
+        "proxy-chain": "^0.2.5",
+        "puppeteer": "^1.9.0",
+        "request": "^2.88.0"
+    }
+}

@@ -1,3 +1,1 @@
-
-a = 123
-print ('click ad ' ,a ,':' ,a)
+print ('+++++ID_', 1, 'viewed:',2,'+++++')

@@ -19,12 +19,6 @@ devices=['Galaxy S5','iPhone 5','iPhone 6','iPhone 6 Plus','iPhone 7','iPhone 7 
 linksFile=open('./links.txt','r')
 links = linksFile.readlines() #链接文件arr
 
-    {'id':0,  'uId':1125, 'viewRate':100, 'clickRate':12, 'viewMax':1500, 'clickMax':10, 'viewed':0, 'clicked':0},   #176 312 1 =2
-    {'id':1,  'uId':5188, 'viewRate':88, 'clickRate':12, 'viewMax':1500, 'clickMax':10, 'viewed':0, 'clicked':0},   #138 283 10 =0.4
-    {'id':10, 'uId':5731, 'viewRate':100, 'clickRate':12, 'viewMax':1500, 'clickMax':10, 'viewed':0, 'clicked':0},  #5_664 294 4 =2.8
-    {'id':11, 'uId':5765, 'viewRate':94, 'clickRate':12, 'viewMax':1500, 'clickMax':10, 'viewed':0, 'clicked':0},  #6_643 269 6 =3
-]
-
 def click(x,y):
     win32api.SetCursorPos((x,y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)

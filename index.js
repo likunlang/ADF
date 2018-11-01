@@ -25,21 +25,21 @@ const axios = require('axios');
 
 let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
     //id0、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
-    {id:0,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},   //176 **379 *29
-    {id:1,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},   //138 **  *21.6
-    {id:2,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //B1 915 19 *33
-    {id:3,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:15, viewed:0, clicked:0},   //B2 853 11=2.4 *26.5
-    {id:4,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //黑 875 11 =1.8 *26
-    {id:5,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //1_642 902 3 *10.8
-    {id:6, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //2_648 859 8 *23
-    {id:7, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //3_674 892 6 *13
-    {id:8, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //4_654 906 13 *11
-    {id:9, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //5_664 867 11 *18.4
-    {id:10, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //6_643 919 4 *17.5
-    {id:11, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //7_647 847 9 *9.7
-    {id:12, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //8_644 888 9 *12
-    {id:13, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //9_644 866 10 *5.4
-    {id:14, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:15, viewed:0, clicked:0},  //10_649 840 0 *0
+    {id:0,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //176 **379 585 20 *29
+    {id:1,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},   //138 ** 541 11 *21.6
+    {id:2,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //B1 731 17 *33
+    {id:3,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //B2 712 14 *26.5
+    {id:4,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //黑 687 7 =1.8 *26
+    {id:5,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //1_642 706 11 *10.8
+    {id:6, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //2_648 731 15 *23
+    {id:7, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //3_674 775 8 *13
+    {id:8, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //4_654 734 0 *11
+    {id:9, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //5_664 723 11 *18.4
+    {id:10, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //6_643 675 10 *17.5
+    {id:11, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //7_647 724 15 *9.7
+    {id:12, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //8_644 713 13 *12
+    {id:13, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //9_644 665 15 *5.4
+    {id:14, alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //10_649 680 4 *0
 ]
 
 let aliveConfigObj = configObj.filter(item =>item.alive === true)

@@ -16,8 +16,6 @@ os.environ["webdriver.chrome.driver"] = "D:\ADFclick\python\chromedriver.exe"
 
 devices=['Galaxy S5','iPhone 5','iPhone 6','iPhone 6 Plus','iPhone 7','iPhone 7 Plus','iPhone 8','iPhone 8 Plus','iPhone X','iPhone SE']
 
-linksFile=open('./links.txt','r')
-links = linksFile.readlines() #链接文件arr
 
 def click(x,y):
     win32api.SetCursorPos((x,y))
@@ -32,13 +30,17 @@ def getIPs(url):
 	return ips
 
 def run():
-	
+
 	ipArr = getIPs('http://tpv.daxiangdaili.com/ip/?tid=556227891973450&num=60&filter=on') # 获取代理ip
 	
 	if len(ipArr) < 10: # 如果获取到的代理数太少则*秒后再重新获取
-		time.sleep(300)
+		time.sleep(301)
 	
 	else: # 代理ipArr数够多
+
+		linksFile = open('./links.txt','r')
+		links = linksFile.readlines() #链接文件arr
+
 		for ip in ipArr:
 
 			openlinks =  4 #定义一次打开链接条数

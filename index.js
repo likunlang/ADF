@@ -26,10 +26,10 @@ const axios = require('axios');
 let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
     //id0、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
     // {id:0,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //138 ** 870 7 *0.2(680/11=0.016)
-    {id:0,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //B1 1026 13 *3.8(921/19=0.0206)
-    {id:1,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},   //B2 840 0 *1.75(853/14=0.016)
-    {id:2,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //黑 913 10 *2.8(835/14=0.016)
-    {id:3,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:15, viewed:0, clicked:0},   //176 **379 1073 14 *2.6(1017/21=0.02)
+    {id:0,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //B1 786 17 *4.88(921/19=0.0206)
+    {id:1,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},   //B2 736 10 *0(853/14=0.016)
+    {id:2,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //黑 742 0 *4.36(835/14=0.016)
+    {id:3,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:15, viewed:0, clicked:0},   //176 **379 704 15 *3.37(1118/21=)
     {id:4,  alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //1_642 1100 22 *1.38(878/11=0.0125)
     {id:5, alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //2_648 920 16 *3(884/15=0.0169)
     {id:6, alive:true,  viewRate:100, clickRate:22, viewMax:1500, clickMax:16, viewed:0, clicked:0},  //3_674 970 22 *2.13(914/17=0.018)

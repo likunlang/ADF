@@ -31,10 +31,10 @@ def getIPs(url):
 
 def run():
 
-	ipArr = getIPs('http://tpv.daxiangdaili.com/ip/?tid=556227891973450&num=30&filter=on') # 获取代理ip
+	ipArr = getIPs('http://tpv.daxiangdaili.com/ip/?tid=XXXXXXX&num=15&filter=on') # 获取代理ip
 	
 	if len(ipArr) < 8: # 如果获取到的代理数太少则*秒后再重新获取
-		time.sleep(301)
+		time.sleep(188)
 	
 	else: # 代理ipArr数够多
 
@@ -65,7 +65,7 @@ def run():
 					print ('error')
 					continue
 				else:
-					time.sleep(random.uniform(2,4))
+					time.sleep(random.uniform(48,60))
 					try:
 						AD = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.ID, "ad")))
 

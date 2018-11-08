@@ -3,6 +3,7 @@
 *  使用：
 *  1 安装依赖： npm install
 *  2 启动： node index.js
+*2.8 3.16 2.8 3.49 2.6 4.28 5.1 1.6 1.62 3.16 0.9 1.97 1.62 3.16
 *
 * */
 
@@ -14,21 +15,20 @@ const axios = require('axios');
 
 let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
     //id0、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
-    // {id:0,  alive:true,  viewRate:100, clickRate:20, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //138 ** 870 7 *0.2(680/11=0.016)
-    {id:0,  alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //B1 786 17 *4.88(921/19=0.0206)
-    {id:1,  alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //B2 736 10 *0(853/14=0.016)
-    {id:2,  alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //黑 742 0 *4.36(835/14=0.016)
-    {id:3,  alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},   //176 **379 704 15 *3.37(1118/21=)
-    {id:4,  alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //1_642 1100 22 *1.38(878/11=0.0125)
-    {id:5, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //2_648 920 16 *3(884/15=0.0169)
-    {id:6, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //3_674 970 22 *2.13(914/17=0.018)
-    {id:7, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //4_654 967 0 *2(909/16=0.017)
-    {id:8, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //5_664 891 18 *3(887/15=0.0169)
-    {id:9, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //6_643 859 13 *3.4(836/17=0.0203)
-    {id:10, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //7_647 840 8 *3(875/15=0.017)
-    {id:11, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //8_644 936 23 *3.2(863/16=0.0185)
-    {id:12, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //9_644 930 16 *3.7(825/15=0.01818)
-    {id:13, alive:true,  viewRate:100, clickRate:33, viewMax:1500, clickMax:14, viewed:0, clicked:0},  //10_649 1061 0 *1(823/4)
+    {id:0,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //B1 1092 19
+    {id:1,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},   //B2 1031 13
+    {id:2,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //138 582 6
+    {id:3,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},   //176 1072 20
+    {id:4,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //1_642 813 13
+    {id:5, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //2_648 1070 17
+    {id:6, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //3_674 910 7
+    {id:7, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //4_654 1258 15
+    {id:8, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //5_664 1156 0
+    {id:9, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //6_643 927 16
+    {id:10, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //7_647 1321 14
+    {id:11, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //8_644 1012 6
+    {id:12, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //9_644 966 15
+    {id:13, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //10_649 968 14
 ]
 
 let aliveConfigObj = configObj.filter(item =>item.alive === true)
@@ -58,7 +58,7 @@ async function run(index, config, flag, links) {
 
     let opendLink = randomNum(1,100);
     let opendAd = randomNum(1,100);
-    let viewtime = randomNum(12*1000,14*1000);//页面停留时间
+    let viewtime = randomNum(50*1000,60*1000);//页面停留时间
 
     console.log('randomNum: ',opendLink,opendAd)
     let currentConfig = config.find(item =>item.id===index.target);
@@ -66,7 +66,7 @@ async function run(index, config, flag, links) {
     if (opendLink < currentConfig.viewRate){
 
         const browser = await puppeteer.launch({
-            headless: true,  //是否需关闭浏览器显示,
+            headless: false,  //是否需关闭浏览器显示,
         });
 
         const page = await browser.newPage();
@@ -87,6 +87,7 @@ async function run(index, config, flag, links) {
                 let container = '#container';
                 await page.waitForSelector(container);
                 if (container&&flag){ //有网络，加载页面成功
+                    await page.waitFor(viewtime);
                     currentConfig.viewed++;
                     console.log('###### 当前浏览量 ######');
 
@@ -104,7 +105,6 @@ async function run(index, config, flag, links) {
                         let AD = '#ad';
                         await page.waitForSelector(AD);
                         if (AD){
-                            await page.waitFor(viewtime);
                             await page.click(AD);
                             currentConfig.clicked++
                             console.log('++++++ 当前点击量 ++++++++++');
@@ -117,10 +117,10 @@ async function run(index, config, flag, links) {
                             })
                             console.log(' ');
 
-                            await page.waitFor(randomNum(100,300));
+                            await page.waitFor(randomNum(100,200));
                         }
                     }else if (currentConfig.clicked >= currentConfig.clickMax){
-                        await page.waitFor(randomNum(50,160));
+                        await page.waitFor(randomNum(0,10));
                         console.log('---- ID_ '+currentConfig.id+'已完成点击：'+currentConfig.clicked+' ----')
                     }
 
@@ -138,6 +138,7 @@ async function run(index, config, flag, links) {
                             await pageNew.goto(links[clickRandom][linkIndexNew],pageGotoOption); //前面加await为同步执行
                             let containerNew = '#container';
                             await pageNew.waitForSelector(containerNew);
+                            await page.waitFor(viewtime);
                             if (containerNew){
                                 currentConfigNew.viewed++;
                                 console.log('****** 同时点击 ID_'+ currentConfigNew.id + ': ' + currentConfigNew.viewed + ' ******');

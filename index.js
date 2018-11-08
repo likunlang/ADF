@@ -66,7 +66,7 @@ async function run(index, config, flag, links) {
     if (opendLink < currentConfig.viewRate){
 
         const browser = await puppeteer.launch({
-            headless: false,  //是否需关闭浏览器显示,
+            headless: true,  //是否需关闭浏览器显示,
         });
 
         const page = await browser.newPage();

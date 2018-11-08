@@ -31,7 +31,11 @@ def getIPs(url):
 
 def run():
 
+<<<<<<< HEAD
 	ipArr = getIPs('http://tpv.daxiangdaili.com/ip/?tid=XXXXXXX&num=15&filter=on') # 获取代理ip
+=======
+	ipArr = getIPs('http://tpv.daxiangdaili.com/ip/?tid=&num=30&filter=on') # 获取代理ip
+>>>>>>> e0b4fa343b84518c48567c0138f709780d46b6c0
 	
 	if len(ipArr) < 8: # 如果获取到的代理数太少则*秒后再重新获取
 		time.sleep(188)

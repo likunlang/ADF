@@ -19,33 +19,33 @@ let pageOptions = {
 
 let config = [
     {index:0, id:'0000',  ifview:true, clickRate:0, clickMax:0, viewed:0, clicked:0},
-    {index:1, id:'5207',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:2, id:'5286',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:3, id:'1125',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:4, id:'7992',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:5, id:'8069',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:6, id:'8067',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:7, id:'8070',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:8, id:'8071',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:9, id:'8081',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:10, id:'8079',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:11, id:'8083',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:12, id:'8275',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:13, id:'8285',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8288',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8041',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8109',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8111',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8192',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8586',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8421',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8598',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8601',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8606',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8610',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8182',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'8236',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
-    {index:14, id:'5295',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:1, id:'5207',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:2, id:'5286',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:3, id:'1125',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:4, id:'7992',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:5, id:'8069',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:6, id:'8067',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:7, id:'8070',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:8, id:'8071',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:9, id:'8081',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:10, id:'8079',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:11, id:'8083',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:12, id:'8275',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:13, id:'8285',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:14, id:'8288',  ifview:true, clickRate:100, clickMax:4, viewed:0, clicked:0},
+    {index:14, id:'8041',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8109',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8111',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8192',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8586',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8421',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8598',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8601',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8606',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8610',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8182',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'8236',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:14, id:'5295',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
 ]
 
 //生成随机数函数
@@ -91,7 +91,7 @@ async function opend(res) {
 
     if (conf.ifview){
         const browser = await puppeteer.launch({
-            headless: false,  //是否需关闭浏览器显示,
+            headless: true,  //是否需关闭浏览器显示,
         });
 
         const page = await browser.newPage();
@@ -108,7 +108,7 @@ async function opend(res) {
 
             hasNet = 1
 
-            await page.waitForSelector('#ad iframe')
+            await page.waitForSelector('#ad iframe',{timeout:35000})
 
             //浏览成功
             conf.viewed++;
@@ -153,7 +153,7 @@ async function opend(res) {
                     await _page.waitForSelector('#container')
                     hasNet = 1
 
-                    await _page.waitForSelector('#ad iframe')
+                    await _page.waitForSelector('#ad iframe',{timeout:35000})
                     await page.waitFor(randint(500,1*1000)); //广告出现后等待时间
 
                     _conf.viewed++;

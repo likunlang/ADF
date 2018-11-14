@@ -3,190 +3,184 @@
 *  使用：
 *  1 安装依赖： npm install
 *  2 启动： node index.js
-*2.8 3.16 2.8 3.49 2.6 4.28 5.1 1.6 1.62 3.16 0.9 1.97 1.62 3.16
 *
 * */
 
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
+const readline = require('readline');
+const fs = require('fs');
 
-let linkArr = require('./links');
-const axios = require('axios');
-
-let configObj = [ //比例必须小于4% 则: 浏览量=25*点击量
-    //id0、是否冻结、打开链接概率、点击广告概率、浏览量max、点击量max、当前浏览量、当前点击量
-    {id:0,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //B1 1092 19
-    {id:1,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},   //B2 1031 13
-    {id:2,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //138 582 6
-    {id:3,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},   //176 1072 20
-    {id:4,  alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //1_642 813 13
-    {id:5, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //2_648 1070 17
-    {id:6, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //3_674 910 7
-    {id:7, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //4_654 1258 15
-    {id:8, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //5_664 1156 0
-    {id:9, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //6_643 927 16
-    {id:10, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //7_647 1321 14
-    {id:11, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //8_644 1012 6
-    {id:12, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //9_644 966 15
-    {id:13, alive:true,  viewRate:100, clickRate:100, viewMax:1500, clickMax:7, viewed:0, clicked:0},  //10_649 968 14
-]
-
-let aliveConfigObj = configObj.filter(item =>item.alive === true)
-
-//轮询下标对象
-let indexObj = {
-    target:aliveConfigObj[0].id,
-    arr:aliveConfigObj.map(item=>item.id)
-};
-
-let netFlag = 1 //是否有网络
-let pageGotoOption = {
-    timeout:120*1000,
+let hasNet = 1 //是否有网络
+let pageOptions = {
+    timeout:45*1000,
     waitUntil:'networkidle0'
 }
 
+let config = [
+    {index:0, id:'0000',  ifview:true, clickRate:0, clickMax:0, viewed:0, clicked:0},
+    {index:1, id:'5207',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:2, id:'5286',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:3, id:'1125',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:4, id:'7992',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:5, id:'8069',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:6, id:'8067',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:7, id:'8070',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:8, id:'8071',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:9, id:'8081',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:10, id:'8079',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:11, id:'8083',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:12, id:'8275',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:13, id:'8285',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8288',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8041',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8109',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8111',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8192',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8586',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8421',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8598',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8601',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8606',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8610',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8182',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'8236',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+    {index:14, id:'5295',  ifview:true, clickRate:100, clickMax:7, viewed:0, clicked:0},
+]
+
 //生成随机数函数
-function randomNum(min, max){
+function randint(min, max){
     return Math.floor(Math.random() * (max - min) + min);
 }
-function setDevice() {
-    let randomIndex = Math.floor(Math.random()*devices.length)
-    return devices[randomIndex]
+function device() {
+    return devices[randint(0,devices.length)]
 }
 
-async function run(index, config, flag, links) {
+//读取文件
+function rf(path) {
+    let rl = readline.createInterface({
+        input: fs.createReadStream(path),
+        crlfDelay: Infinity
+    });
 
-    let opendLink = randomNum(1,100);
-    let opendAd = randomNum(1,100);
-    let viewtime = randomNum(50*1000,60*1000);//页面停留时间
+    let lines = [];
+    rl.on('line', (line) => {
+        lines.push(line)
+    })
 
-    console.log('randomNum: ',opendLink,opendAd)
-    let currentConfig = config.find(item =>item.id===index.target);
+    return new Promise((resolve,reject) => {
+        rl.on('close',line=>{
+            resolve(lines)
+        })
+    })
+}
 
-    if (opendLink < currentConfig.viewRate){
+function getConfig(con,link) {
+    let curentId = link.substr(link.indexOf('&t=')-4,4)
+    let con_obj = con.find(i =>i.id===curentId) ? con.find(i =>i.id===curentId) : con[0]
+    return con_obj
+}
 
+async function opend(res) {
+    let links = res
+    let link = links[randint(0,links.length-1)]
+    let conf = getConfig(config,link)
+
+    let clickAd = randint(1,100);
+    console.log('randint: ',clickAd)
+
+    if (conf.ifview){
         const browser = await puppeteer.launch({
-            headless: true,  //是否需关闭浏览器显示,
+            headless: false,  //是否需关闭浏览器显示,
         });
 
         const page = await browser.newPage();
-        await page.emulate(setDevice());
+        await page.emulate(device());
 
-        if (!flag){
-            flag = 1;
-            await page.waitFor(randomNum(3*1000,6*1000));
-        }else{
-            await page.waitFor(randomNum(10,20));//使打开link时间间隔随机
+        if (!hasNet){ //没有网络
+            await page.waitFor(randint(6*1000,10*1000));
         }
 
-        if ( currentConfig.viewed < currentConfig.viewMax) {
-            try{
-                //打开页面
-                let linkIndex = randomNum(0,links[index.target].length); //随机链接下标
-                await page.goto(links[index.target][linkIndex],pageGotoOption);
-                let container = '#container';
-                await page.waitForSelector(container);
-                if (container&&flag){ //有网络，加载页面成功
-                    await page.waitFor(viewtime);
-                    currentConfig.viewed++;
-                    console.log('###### 当前浏览量 ######');
+        try{
+            //打开页面
+            await page.goto(link, pageOptions);
+            await page.waitForSelector('#container')
 
-                    config.map(item=>{
-                        if(item.id === index.target) {
-                            console.log('****** ID_'+ item.id + ': ' + item.viewed + ' ******');
-                        }else {
-                            console.log('====== ID_'+ item.id + ': ' + item.viewed + ' ======');
-                        }
-                    })
-                    console.log(' ');
+            hasNet = 1
 
-                    //点击广告
-                    if (opendAd < currentConfig.clickRate && currentConfig.clicked < currentConfig.clickMax) {//随机数来决定是否点击广告
-                        let AD = '#ad';
-                        await page.waitForSelector(AD);
-                        if (AD){
-                            await page.click(AD);
-                            currentConfig.clicked++
-                            console.log('++++++ 当前点击量 ++++++++++');
-                            config.map(item=>{
-                                if(item.id === index.target) {
-                                    console.log('****** ID_'+ item.id + ' 浏览量:' + item.viewed + ' 点击量:' + item.clicked + ' 比例:' + parseInt(item.clicked*100/item.viewed) + '% ******');
-                                }else {
-                                    console.log('+++ID_'+ item.id + ' 浏览量:' + item.viewed + ' 点击量:' + item.clicked + ' 比例:' + parseInt(item.clicked*100/item.viewed) + '%+++');
-                                }
-                            })
-                            console.log(' ');
+            await page.waitForSelector('#ad iframe')
 
-                            await page.waitFor(randomNum(100,200));
-                        }
-                    }else if (currentConfig.clicked >= currentConfig.clickMax){
-                        await page.waitFor(randomNum(0,10));
-                        console.log('---- ID_ '+currentConfig.id+'已完成点击：'+currentConfig.clicked+' ----')
-                    }
-
-
-                    let clickFalg = 0;
-                    let openLinks = index.arr.length < 6 ? index.arr.length : 6
-                    while (clickFalg < openLinks){ //同时打开的链接数
-                        let clickRandom = randomNum(0,index.arr.length);
-                        let currentConfigNew = config.find(item =>item.id===clickRandom);
-                        if (clickRandom !==index.target &&  currentConfigNew.viewed < currentConfigNew.viewMax) {
-                            let pageNew = await browser.newPage();
-                            await pageNew.emulate(setDevice());
-
-                            let linkIndexNew = randomNum(0,links[clickRandom].length);
-                            await pageNew.goto(links[clickRandom][linkIndexNew],pageGotoOption); //前面加await为同步执行
-                            let containerNew = '#container';
-                            await pageNew.waitForSelector(containerNew);
-                            await page.waitFor(viewtime);
-                            if (containerNew){
-                                currentConfigNew.viewed++;
-                                console.log('****** 同时点击 ID_'+ currentConfigNew.id + ': ' + currentConfigNew.viewed + ' ******');
-                            }
-                        }
-
-                        clickFalg++;
-                    }
-
-                }
-
-            }catch(e){//没有网络
-                console.log('连接超时,切换IP...')
-                console.log(' ')
-                flag = 0;
-            }
-        }else{
-            //如果超出预设最大值则在index.arr中删除下标
-            index.arr = index.arr.filter(item=>{
-                if (item !== index.target){
-                    return item
+            //浏览成功
+            conf.viewed++;
+            console.log('###### 当前浏览量 ######');
+            config.map(item=>{
+                if(item.id === conf.id) {
+                    console.log('****** ID_'+ item.id + ': ' + item.viewed + ' ******');
+                }else {
+                    console.log('====== ID_'+ item.id + ': ' + item.viewed + ' ======');
                 }
             })
 
-            if( index.arr.length === 0){
-                //全部超出预设最大值，退出程序
-                console.log('++++++ 最终数据 ++++++');
+            if(conf.clicked < conf.clickMax && clickAd < conf.clickRate){//点击广告
+
+                await page.waitFor(randint(2*1000,3*1000)); //广告出现后等待时间
+                await page.click('#ad');
+                await page.waitFor(randint(1*1000,2*1000)); //点击广告后等待时间
+
+                //点击广告成功
+                conf.clicked++
+                console.log('++++++ 当前点击量 ++++++++++');
                 config.map(item=>{
-                    console.log('++ID_'+ item.id + ' 浏览量:' + item.viewed + ' 点击量:' + item.clicked + ' 比例:' + parseInt(item.clicked*100/item.viewed) + '%');
+                    if(item.id === conf.id) {
+                        console.log('****** ID_'+ item.id + ' 浏览量:' + item.viewed + ' 点击量:' + item.clicked);
+                    }else {
+                        console.log('+++ID_'+ item.id + ' 浏览量:' + item.viewed + ' 点击量:' + item.clicked);
+                    }
                 })
-                process.exit();
+                console.log(' ');
+
             }
+
+            //同时打开其他链接
+            for(let i=0; i<4; i++){
+                let _link = links[randint(0, links.length - 1)]
+                let _conf = getConfig(config, _link)
+                if(_conf.id != conf.id && _conf.ifview){
+                    let _page = await browser.newPage();
+                    await _page.emulate(device());
+                    await _page.goto(_link, pageOptions);
+
+                    await _page.waitForSelector('#container')
+                    hasNet = 1
+
+                    await _page.waitForSelector('#ad iframe')
+                    await page.waitFor(randint(500,1*1000)); //广告出现后等待时间
+
+                    _conf.viewed++;
+                    console.log('****** 同时点击 ID_'+ _conf.id + ': ' + _conf.viewed + ' ******');
+                }
+            }
+
+        }catch(e){//没有网络
+            console.log('连接超时,切换IP...')
+            console.log(' ')
+            hasNet = 0;
         }
 
         //关闭浏览器
-        await page.waitFor(randomNum(100,300));
+        await page.waitFor(randint(2*1000,3*1000));
         browser.close();
-
-    }else{
-        console.log('NO opend');
     }
-
-    index.target = index.target === index.arr[index.arr.length - 1] ? index.arr[0] : index.arr[index.arr.indexOf(index.target) + 1];
-
-    run(index, config, flag, linkArr);
+    opend(res)
 }
 
-run(indexObj, configObj, netFlag, linkArr);
+rf('./links.txt').then(res=>{
+    opend(res)
+})
+
+
+
+
 
 
 

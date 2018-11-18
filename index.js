@@ -19,21 +19,21 @@ let pageOptions = {
 
 let config = [
     {index:0, id:'0000',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:1, id:'5207',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:2, id:'5286',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:1, id:'5207',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //3
+    {index:2, id:'5286',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //6
     {index:3, id:'1125',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:4, id:'7992',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:5, id:'8069',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:6, id:'8067',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:7, id:'8070',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:8, id:'8071',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:9, id:'8081',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:10, id:'8079',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:11, id:'8083',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:12, id:'8275',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:13, id:'8285',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:14, id:'8288',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
-    {index:15, id:'8758',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0},
+    {index:4, id:'7992',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //9
+    {index:5, id:'8069',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //6
+    {index:6, id:'8067',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //5
+    {index:7, id:'8070',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //3
+    {index:8, id:'8071',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //9
+    {index:9, id:'8081',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //7
+    {index:10, id:'8079',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //1
+    {index:11, id:'8083',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //6
+    {index:12, id:'8275',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //2
+    {index:13, id:'8285',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //6
+    {index:14, id:'8288',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //9
+    {index:15, id:'8758',  ifview:true, clickRate:100, clickMax:5, viewed:0, clicked:0}, //4
 ]
 
 //生成随机数函数

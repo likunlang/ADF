@@ -22,12 +22,16 @@ loop = asyncio.get_event_loop()
 
 # 切换飞行模式:
 def toggleAirplane(device):
-    #开启飞行=>（无网）
+    #获取飞行模式状态
+    aielane_on = os.popen('adb shell getprop persist.radio.airplane_mode_on').read()
+
+    #切换
     os.system('adb ' + device + ' shell am start -a android.settings.AIRPLANE_MODE_SETTINGS & adb ' + device + ' shell input keyevent KEYCODE_DPAD_DOWN & adb ' + device + ' shell input keyevent 4 & sleep 0.1')
     os.system('adb ' + device + ' shell am start -a android.settings.AIRPLANE_MODE_SETTINGS & adb ' + device + ' shell input keyevent KEYCODE_ENTER & adb ' + device + ' shell input keyevent 4 & sleep 0.1')
 
-    #关闭飞行=>(有网)
-    os.system('adb ' + device + ' shell am start -a android.settings.AIRPLANE_MODE_SETTINGS & adb ' + device + ' shell input keyevent KEYCODE_ENTER & adb ' + device + ' shell input keyevent 4 & sleep 3')
+    if aielane_on[0] == '0': #飞行模式关
+        os.system('adb ' + device + ' shell am start -a android.settings.AIRPLANE_MODE_SETTINGS & adb ' + device + ' shell input keyevent KEYCODE_ENTER & adb ' + device + ' shell input keyevent 4 & sleep 3')
+
 
 async def opend(link,device): #定义为异步
     try:
@@ -40,7 +44,7 @@ async def opend(link,device): #定义为异步
         print ('opend link error')
     else:
         #打开成功等待
-        time.sleep(random.randint(25,32))
+        time.sleep(random.randint(8,9))
         print ('++++opend link success++++')
         #关闭浏览器
         os.system('adb -s ' + device + ' shell am force-stop com.android.chrome')
@@ -49,7 +53,9 @@ def run():
     try:
         #获取随机链接
         link = links[random.randint(0,len(links)-1)].replace("&","\&").replace("\n","")
-        if len(devices) > 0 : #多个设备
+
+        if len(devices) > 0 : 
+            #多个设备
             for i in devices:
                 device = "-s " + i;
                 loop.run_until_complete(opend(link, device))
@@ -61,7 +67,6 @@ def run():
     except Exception:
         print ('error')
     return run()
-
 
 if __name__ == '__main__':
     run()

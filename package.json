@@ -1,9 +1,0 @@
-{
-    "name": "ADF",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-        "axios": "^0.18.0",
-        "puppeteer": "^1.9.0"
-    }
-}
